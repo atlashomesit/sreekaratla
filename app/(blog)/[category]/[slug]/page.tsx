@@ -27,6 +27,7 @@ export const generateStaticParams = () =>
   allPosts.map((post) => ({ category: resolveTrack(post), slug: post.slug }));
 
 export const dynamicParams = false;
+export const dynamic = "force-static";
 
 export const generateMetadata = ({ params }: ArticlePageProps): Metadata => {
   const { isEnabled } = draftMode();
