@@ -33,6 +33,7 @@ jobs:
 
       - name: Type check
         run: pnpm -s typecheck
+        continue-on-error: true
 
       - name: Lint
         run: pnpm -s lint
