@@ -13,10 +13,10 @@ export function Hero() {
         <div className="space-y-8">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/60">Sreekar Atla</p>
           <h1 className="text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
-            Enterprise architect & AI/cloud leader, hospitality operator, and conscious leadership guide.
+            Enterprise architect, AI &amp; cloud leader, hospitality founder.
           </h1>
           <p className="max-w-2xl text-lg text-foreground/75">
-            I design large-scale technology platforms, run Atlas Homestays, and coach teams in mindful, high-trust execution. Every engagement blends systems thinking, guest experience craft, and inner work.
+            21+ years architecting platforms across Azure, AWS, and GCP — currently leading enterprise architecture and the AI rollout for a US mortgage-servicing platform. In parallel I run Atlas Homestays and build Atlas PMS, a multi-tenant SaaS for hospitality. Slow writing on tech, hospitality, leadership, and the inner work behind all three.
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <Button asChild>
