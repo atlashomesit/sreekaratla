@@ -4,7 +4,7 @@ import { getAllPosts, TRACKS } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url.replace(/\/$/, "");
-  const staticRoutes = ["/", "/about", "/contact", "/now", "/tags"];
+  const staticRoutes = ["/", "/about", "/contact", "/now", "/uses", "/tags"];
   const trackRoutes = TRACKS.map((track) => `/${track}`);
 
   const pages = [...staticRoutes, ...trackRoutes].map((path) => ({

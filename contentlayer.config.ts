@@ -50,7 +50,9 @@ export const Post = defineDocumentType(() => ({
     tags: { type: 'list', of: { type: 'string' } },
     category: { type: 'enum', options: TRACKS as unknown as readonly string[], required: true },
     featured: { type: 'boolean' },
-    hero: { type: 'string' }
+    hero: { type: 'string' },
+    canonical: { type: 'string' },
+    canonicalSource: { type: 'string' }
   },
   computedFields: {
     slug: {

@@ -32,6 +32,7 @@ export const siteConfig = {
     ...TRACK_NAV,
     { title: 'About', href: '/about' },
     { title: 'Now', href: '/now' },
+    { title: 'Uses', href: '/uses' },
     { title: 'Contact', href: '/contact' }
   ] satisfies NavLink[],
   social: {

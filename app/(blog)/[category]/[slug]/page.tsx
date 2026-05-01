@@ -34,18 +34,19 @@ export const generateMetadata = ({ params }: ArticlePageProps): Metadata => {
   if (!post) return {};
 
   const track = resolveTrack(post);
-  const url = `${siteConfig.url}${post.url}`;
+  const localUrl = `${siteConfig.url}${post.url}`;
+  const canonicalUrl = post.canonical || localUrl;
   const description = post.description;
 
   return {
     title: `${post.title} • ${trackLabels[track]}`,
     description,
-    alternates: { canonical: url },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title: post.title,
       description,
       type: "article",
-      url,
+      url: canonicalUrl,
       publishedTime: post.date,
       modifiedTime: post.updated ?? post.date,
       tags: post.tags,
@@ -71,8 +72,31 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   const adjacent = getAdjacentPosts(post, { includeDrafts: isEnabled });
   const related = getRelatedPosts(post, 3, { includeDrafts: isEnabled });
 
+  const localUrl = `${siteConfig.url}${post.url}`;
+  const canonicalUrl = post.canonical || localUrl;
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.updated ?? post.date,
+    mainEntityOfPage: canonicalUrl,
+    author: {
+      "@type": "Person",
+      name: "Sreekar Atla",
+      url: siteConfig.url
+    },
+    keywords: post.tags?.join(", "),
+    articleSection: trackLabels[track]
+  };
+
   return (
     <article className="pb-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <Container className="space-y-10 py-12">
         <Breadcrumbs
           items={[
@@ -81,6 +105,20 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             { label: post.title }
           ]}
         />
+        {post.canonical && (
+          <div className="rounded-2xl border border-border/60 bg-muted/40 px-5 py-3 text-sm text-foreground/70">
+            Originally published on{" "}
+            <a
+              href={post.canonical}
+              target="_blank"
+              rel="noreferrer"
+              className="font-semibold text-accent underline underline-offset-4"
+            >
+              {post.canonicalSource || new URL(post.canonical).hostname}
+            </a>
+            . This is a mirror — the canonical version lives there.
+          </div>
+        )}
         <header className="space-y-6">
           <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.2em] text-foreground/50">
             <span>{trackLabels[track]}</span>
