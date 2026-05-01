@@ -35,7 +35,9 @@ export const generateMetadata = ({ params }: ArticlePageProps): Metadata => {
 
   const track = resolveTrack(post);
   const localUrl = `${siteConfig.url}${post.url}`;
-  const canonicalUrl = post.canonical || localUrl;
+  // contentlayer types don't always pick up newly-added schema fields; access defensively.
+  const canonicalUrl: string =
+    (post as unknown as { canonical?: string }).canonical || localUrl;
   const description = post.description;
 
   return {
@@ -73,7 +75,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   const related = getRelatedPosts(post, 3, { includeDrafts: isEnabled });
 
   const localUrl = `${siteConfig.url}${post.url}`;
-  const canonicalUrl = post.canonical || localUrl;
+  // contentlayer types don't always pick up newly-added schema fields; access defensively.
+  const canonical: string | undefined = (post as unknown as { canonical?: string })
+    .canonical;
+  const canonicalSource: string | undefined = (
+    post as unknown as { canonicalSource?: string }
+  ).canonicalSource;
+  const canonicalUrl = canonical || localUrl;
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -105,16 +113,16 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             { label: post.title }
           ]}
         />
-        {post.canonical && (
+        {canonical && (
           <div className="rounded-2xl border border-border/60 bg-muted/40 px-5 py-3 text-sm text-foreground/70">
             Originally published on{" "}
             <a
-              href={post.canonical}
+              href={canonical}
               target="_blank"
               rel="noreferrer"
               className="font-semibold text-accent underline underline-offset-4"
             >
-              {post.canonicalSource || new URL(post.canonical).hostname}
+              {canonicalSource || new URL(canonical).hostname}
             </a>
             . This is a mirror — the canonical version lives there.
           </div>

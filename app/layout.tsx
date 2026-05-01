@@ -8,6 +8,9 @@ import { Analytics } from "@/components/analytics";
 import { StructuredData } from "@/components/structured-data";
 import Script from "next/script";
 
+export const runtime = "edge";
+export const preferredRegion = "auto";
+
 export const metadata: Metadata = buildMetadata();
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
