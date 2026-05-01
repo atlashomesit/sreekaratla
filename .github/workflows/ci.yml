@@ -40,6 +40,14 @@ jobs:
       - name: Build (Cloudflare Pages)
         run: npx @cloudflare/next-on-pages@1
 
+      - name: Deploy to Cloudflare Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy .vercel/output/static --project-name=sreekaratla --branch=main
+
       - name: Pagefind (non-blocking)
         if: always()
         run: node scripts/pagefind-safe.js || true
