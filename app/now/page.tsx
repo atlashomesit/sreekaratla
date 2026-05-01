@@ -33,20 +33,30 @@ export default function NowPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="text-2xl font-semibold">Atlas ventures</h2>
+          <h2 className="text-2xl font-semibold">Atlas — hospitality-tech portfolio</h2>
+          <p className="text-foreground/70 text-base">
+            Built solo over evenings and weekends. Day-to-day involvement is minimal — the whole stack
+            runs on an AI-native SDLC.
+          </p>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <strong>Atlas Homestays</strong> — multi-property hospitality business in Hyderabad, running
-              with minimal day-to-day involvement. FY24 topline ₹75L, bottomline ₹60L.
+              <strong>Atlas Homestays</strong> — multi-property hospitality business in Hyderabad,
+              FY24 topline ₹75L, bottomline ₹60L. The proof property.
             </li>
             <li>
-              <strong>Atlas PMS</strong> — multi-tenant SaaS for property management, built solo over
-              evenings and weekends, launched 2026. 10 properties live. .NET 8 / Azure / React / Auth0.
-              DORA metrics in production: 3–5 deploys/week, sub-45-minute commit-to-prod, MTTR under 30 minutes.
+              <strong>Atlas PMS</strong> (atlaspms.in) — multi-tenant SaaS for property management,
+              launched 2026. 10 properties live. .NET 8 / Azure / React / Auth0 RBAC (8 personas).
+              DORA in production: 3–5 deploys/week, sub-45-minute commit-to-prod, MTTR under 30 minutes.
             </li>
             <li>
-              <strong>atlastays.com</strong> — hospitality marketplace, launched 2026. 30 properties
-              listed, 4 hotels on white-label custom domains. Grok-powered guest chatbot live.
+              <strong>atlastays.com</strong> — multi-tenant marketplace, launched 2026. 30 properties
+              listed, 4 hotels on white-label custom domains.
+            </li>
+            <li>
+              <strong>Inside the PMS:</strong> channel manager (Airbnb / Booking.com sync),
+              Interakt-style WhatsApp guest-comms (Twilio-based, with templates and automation),
+              IoT smart-lock control, Power Platform staff workflows, Grok-powered guest chatbot.
+              Each could spin out as a standalone product.
             </li>
           </ul>
         </section>

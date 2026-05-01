@@ -30,11 +30,21 @@ export default function AboutPage() {
           <strong>MCP server</strong> for portfolio queries.
         </p>
         <p>
-          In parallel I run <strong>Atlas Homestays</strong>, a profitable bootstrapped vacation-rental business in Hyderabad
-          (₹75L annual topline, ₹60L bottomline) and build <strong>Atlas PMS</strong>, the multi-tenant SaaS underneath it —
-          solo, over evenings and weekends (.NET 8, Azure, React, Auth0). Day-to-day involvement is minimal; it runs on an
-          AI-native SDLC. DORA metrics in production, not on slides — deployment frequency 3–5/week,
-          commit-to-prod under 45 minutes, MTTR under 30, change failure rate under 5%.
+          In parallel I run a portfolio of hospitality-tech products under <strong>Atlas</strong> — built solo over evenings
+          and weekends, on an AI-native SDLC that keeps day-to-day involvement minimal. <strong>Atlas Homestays</strong> is
+          the operating business (₹75L topline, ₹60L bottomline, FY24). <strong>Atlas PMS</strong> (atlaspms.in) is the
+          multi-tenant SaaS underneath it — .NET 8, Azure, React, Auth0 RBAC across 8 personas, with DORA metrics in
+          production: 3–5 deploys/week, commit-to-prod under 45 minutes, MTTR under 30, change failure rate under 5%.
+          <strong>atlastays.com</strong> is the multi-tenant marketplace — 30 properties listed, 4 hotels live on
+          white-label custom domains.
+        </p>
+        <p>
+          Inside Atlas PMS sit several modules that could spin out as standalone products: a{" "}
+          <strong>channel manager</strong> (OTA sync to Airbnb and Booking.com), an{" "}
+          <strong>Interakt-style WhatsApp messaging stack</strong> (Twilio-based guest comms with templates and
+          automation), <strong>IoT smart-lock control</strong>, a <strong>Power Platform staff-workflow layer</strong>{" "}
+          (Apps, Automate, BI), and a <strong>Grok-powered guest chatbot</strong> live on atlastays.com. The strategic
+          flywheel: Homestays = proof property · PMS = engine · atlastays.com = distribution.
         </p>
         <p>
           Earlier: Principal Cloud / AI Solutions Architect and Cloud CoE Head at Tech Mahindra (Field-CTO-style engagement
@@ -58,8 +68,10 @@ export default function AboutPage() {
         <ul className="mt-4 space-y-2 text-foreground/70">
           <li>• 21+ years across enterprise architecture, presales / solutioning, and founder operations.</li>
           <li>• Director — Enterprise Architect at Codincity (strategic account: Sagent, US mortgage servicing).</li>
-          <li>• Founder &amp; operator, Atlas Homestays (₹75L topline · ₹60L bottomline · multi-property).</li>
-          <li>• Solo builder of Atlas PMS — multi-tenant SaaS for hospitality, built evenings &amp; weekends (.NET 8 / Azure / React / Auth0 · DORA in production).</li>
+          <li>• Founder &amp; operator, Atlas Homestays (₹75L topline · ₹60L bottomline · multi-property, FY24).</li>
+          <li>• Solo builder of Atlas PMS (atlaspms.in) — multi-tenant SaaS for hospitality, built evenings &amp; weekends (.NET 8 / Azure / React / Auth0 · DORA in production).</li>
+          <li>• Atlas marketplace at atlastays.com — 30 properties listed, 4 hotels on white-label custom domains.</li>
+          <li>• Productisable PMS modules: channel manager · WhatsApp guest-comms (Interakt-style) · IoT smart-locks · Power Platform staff workflows · Grok-powered guest chatbot.</li>
           <li>
             • ISB CTO Programme · MS AI/ML (Liverpool John Moores University, UK) · Currently pursuing the GenAI with Azure
             OpenAI programme at Great Learning.
