@@ -40,9 +40,9 @@ export default function NowPage() {
               with minimal day-to-day involvement. FY24 topline ₹75L, bottomline ₹60L.
             </li>
             <li>
-              <strong>Atlas PMS</strong> — multi-tenant SaaS for property management, launched 2026.
-              10 properties live. .NET 8 / Azure / React / Auth0. DORA metrics in production:
-              3–5 deploys/week, sub-45-minute commit-to-prod, MTTR under 30 minutes.
+              <strong>Atlas PMS</strong> — multi-tenant SaaS for property management, built solo over
+              evenings and weekends, launched 2026. 10 properties live. .NET 8 / Azure / React / Auth0.
+              DORA metrics in production: 3–5 deploys/week, sub-45-minute commit-to-prod, MTTR under 30 minutes.
             </li>
             <li>
               <strong>atlastays.com</strong> — hospitality marketplace, launched 2026. 30 properties

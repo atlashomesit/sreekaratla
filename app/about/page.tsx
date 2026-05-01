@@ -31,8 +31,9 @@ export default function AboutPage() {
         </p>
         <p>
           In parallel I run <strong>Atlas Homestays</strong>, a profitable bootstrapped vacation-rental business in Hyderabad
-          (₹75L annual topline, ₹60L bottomline) and build <strong>Atlas PMS</strong>, the multi-tenant SaaS underneath it
-          (.NET 8, Azure, React, Auth0). DORA metrics in production, not on slides — deployment frequency 3–5/week,
+          (₹75L annual topline, ₹60L bottomline) and build <strong>Atlas PMS</strong>, the multi-tenant SaaS underneath it —
+          solo, over evenings and weekends (.NET 8, Azure, React, Auth0). Day-to-day involvement is minimal; it runs on an
+          AI-native SDLC. DORA metrics in production, not on slides — deployment frequency 3–5/week,
           commit-to-prod under 45 minutes, MTTR under 30, change failure rate under 5%.
         </p>
         <p>
@@ -58,7 +59,7 @@ export default function AboutPage() {
           <li>• 21+ years across enterprise architecture, presales / solutioning, and founder operations.</li>
           <li>• Director — Enterprise Architect at Codincity (strategic account: Sagent, US mortgage servicing).</li>
           <li>• Founder &amp; operator, Atlas Homestays (₹75L topline · ₹60L bottomline · multi-property).</li>
-          <li>• Builder of Atlas PMS — multi-tenant SaaS for hospitality, .NET 8 / Azure / React / Auth0.</li>
+          <li>• Solo builder of Atlas PMS — multi-tenant SaaS for hospitality, built evenings &amp; weekends (.NET 8 / Azure / React / Auth0 · DORA in production).</li>
           <li>
             • ISB CTO Programme · MS AI/ML (Liverpool John Moores University, UK) · Currently pursuing the GenAI with Azure
             OpenAI programme at Great Learning.

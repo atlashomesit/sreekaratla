@@ -16,7 +16,7 @@ export function Hero() {
             Enterprise architect, AI &amp; cloud leader, hospitality founder.
           </h1>
           <p className="max-w-2xl text-lg text-foreground/75">
-            21+ years architecting platforms across Azure, AWS, and GCP — currently leading enterprise architecture and the AI rollout for a US mortgage-servicing platform. In parallel I run Atlas Homestays and build Atlas PMS, a multi-tenant SaaS for hospitality. Slow writing on tech, hospitality, leadership, and the inner work behind all three.
+            21+ years architecting platforms across Azure, AWS, and GCP — currently leading enterprise architecture and the AI rollout for a US mortgage-servicing platform. In parallel I run Atlas Homestays and build Atlas PMS, a multi-tenant SaaS for hospitality built solo over evenings and weekends. Slow writing on tech, hospitality, leadership, and the inner work behind all three.
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <Button asChild>
