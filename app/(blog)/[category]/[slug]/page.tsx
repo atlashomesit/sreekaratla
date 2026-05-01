@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { Route } from "next";
 import { notFound } from "next/navigation";
-import { draftMode } from "next/headers";
 import { allPosts } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -30,8 +29,7 @@ export const dynamicParams = false;
 export const dynamic = "force-static";
 
 export const generateMetadata = ({ params }: ArticlePageProps): Metadata => {
-  const { isEnabled } = draftMode();
-  const post = getPostByParams(params.category, params.slug, { includeDrafts: isEnabled });
+  const post = getPostByParams(params.category, params.slug);
   if (!post) return {};
 
   const track = resolveTrack(post);
@@ -63,8 +61,7 @@ export const generateMetadata = ({ params }: ArticlePageProps): Metadata => {
 };
 
 export default function ArticlePage({ params }: ArticlePageProps) {
-  const { isEnabled } = draftMode();
-  const post = getPostByParams(params.category, params.slug, { includeDrafts: isEnabled });
+  const post = getPostByParams(params.category, params.slug);
 
   if (!post) {
     notFound();
@@ -72,8 +69,8 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
   const track = resolveTrack(post);
   const Component = useMDXComponent(post.body.code);
-  const adjacent = getAdjacentPosts(post, { includeDrafts: isEnabled });
-  const related = getRelatedPosts(post, 3, { includeDrafts: isEnabled });
+  const adjacent = getAdjacentPosts(post);
+  const related = getRelatedPosts(post, 3);
 
   const localUrl = `${siteConfig.url}${post.url}`;
   // contentlayer types don't always pick up newly-added schema fields; access defensively.
