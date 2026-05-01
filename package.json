@@ -49,6 +49,7 @@
     "lucide-react": "0.407.0",
     "next": "14.2.5",
     "next-contentlayer": "0.3.4",
+    "next-mdx-remote": "^6.0.0",
     "next-sitemap": "4.2.3",
     "next-themes": "0.2.1",
     "react": "18.2.0",
@@ -62,22 +63,22 @@
     "tailwind-merge": "2.2.2"
   },
   "devDependencies": {
+    "@contentlayer/cli": "0.3.4",
+    "@contentlayer/utils": "0.3.4",
     "@types/node": "20.12.7",
     "@types/react": "18.2.79",
     "@types/react-dom": "18.2.25",
     "autoprefixer": "10.4.17",
+    "clipanion": "3.2.1",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5",
+    "gray-matter": "4.0.3",
     "husky": "9.0.11",
     "lint-staged": "15.2.2",
     "pagefind": "1.1.1",
     "postcss": "8.4.38",
     "prettier": "3.2.5",
     "tailwindcss": "3.4.3",
-    "typescript": "5.4.5",
-    "gray-matter": "4.0.3",
-    "@contentlayer/cli": "0.3.4",
-    "@contentlayer/utils": "0.3.4",
-    "clipanion": "3.2.1"
+    "typescript": "5.4.5"
   }
 }

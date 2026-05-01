@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { Route } from "next";
 import { notFound } from "next/navigation";
-import dynamicImport from "next/dynamic";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { allPosts } from "contentlayer/generated";
+import { mdxComponents } from "@/lib/mdx";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Container } from "@/components/container";
 import { Prose } from "@/components/prose";
@@ -16,11 +18,6 @@ import { formatDate } from "@/lib/date";
 import { siteConfig, trackLabels } from "@/lib/config";
 import type { TrackId } from "@/lib/config";
 import { PostCard } from "@/components/post-card";
-
-const MdxRenderer = dynamicImport(
-  () => import("@/components/mdx-renderer").then((m) => m.MdxRenderer),
-  { ssr: false }
-);
 
 interface ArticlePageProps {
   params: { category: TrackId; slug: string };
@@ -144,7 +141,11 @@ export default function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </header>
         <Prose>
-          <MdxRenderer code={post.body.code} />
+          <MDXRemote
+            source={post.body.raw}
+            components={mdxComponents}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          />
         </Prose>
         <ShareButtons title={post.title} />
         <nav className="grid gap-4 border-t border-border/60 pt-6 text-sm text-foreground/70 sm:grid-cols-2">
