@@ -23,7 +23,7 @@ export const siteConfig = {
   tagline: 'Tech • Hospitality • Leadership • Spirituality',
   url: process.env.SITE_URL ?? 'https://sreekaratla.com',
   description:
-    'Enterprise architect and hospitality operator sharing strategies in technology, guest experience, leadership, and spirituality.',
+    'Director-level Enterprise Architect, AI/cloud leader, and hospitality founder. Slow writing on tech, operations, leadership, and the inner work behind all three.',
   analyticsProvider: (process.env.ANALYTICS_PROVIDER as AnalyticsProvider) ?? 'plausible',
   plausibleDomain: process.env.PLAUSIBLE_DOMAIN ?? '',
   ga4Id: process.env.GA4_ID ?? '',

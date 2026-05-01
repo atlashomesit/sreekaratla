@@ -1,0 +1,86 @@
+---
+title: "How I Built an AI-Assisted Application Portfolio Catalogue — and Avoided $500K/yr in SaaS Spend"
+description: "A field account of designing and shipping an AI-assisted EA portfolio catalogue: Python automation, LLM classification, a 10-rule validation framework, and zero failed ARB validations across 557+ apps."
+date: "2025-12-01"
+updated: "2026-04-30"
+category: "tech"
+tags:
+  - ai
+  - enterprise-architecture
+  - portfolio-management
+  - llm
+  - python
+featured: true
+---
+
+import { Callout } from '@/components/callout'
+
+Every large enterprise runs on a sprawling application estate nobody fully understands. Vendors charge handsomely for the privilege of cataloguing it. This is the story of how I built a replacement — AI-assisted, validated, and now the authoritative source of truth for an EA practice — and why the incumbent SaaS tool is being retired.
+
+## The problem
+
+The EA team I work in was paying for an enterprise-grade portfolio management SaaS. It had a taxonomy, governance hooks, and a dashboard. It also had 557+ applications that nobody had fully catalogued, a data-quality problem the tool did nothing to solve, and a renewal coming up.
+
+The question was simple: could we build something better ourselves before the renewal?
+
+## The approach
+
+I designed the catalogue around two principles: **structure first, automation second**. Without a clear classification framework, LLM assistance produces creative noise, not structured data.
+
+### Step 1 — Define the cataloguing framework
+
+Every application entry had to capture ten mandatory fields:
+
+1. Unique application ID
+2. Application type (SaaS / COTS / Bespoke / Integration)
+3. Business domain
+4. Business capability
+5. Technology stack
+6. Lifecycle stage (Plan / Build / Run / Retire)
+7. Operational status (Active / Deprecated / Decommissioned)
+8. Authentication method
+9. Compliance classification
+10. Data classification
+
+These weren't invented from scratch — they were aligned to the organisation's existing TOGAF-based EA standards and the ARB ruleset. The validation framework had to pass the same gate the architecture board uses.
+
+### Step 2 — Python automation with LLM-assisted field classification
+
+I wrote a Python automation suite that:
+
+- Ingested raw application metadata from multiple source systems
+- Used LLM-assisted classification to suggest values for ambiguous fields (business domain, capability mapping, data classification)
+- Applied a deterministic 10-rule validation pass before any entry reached the catalogue
+- Flagged low-confidence classifications for human review rather than guessing silently
+
+<Callout>
+LLMs are excellent at suggesting a business domain from a vague application name and a tech stack. They are poor at knowing when they don't know. Build the deterministic validation layer *before* you trust the output — not after.
+</Callout>
+
+The validation rules were strict: a unique-ID collision, a missing compliance field, or an unrecognised lifecycle stage would hard-reject the entry. This was intentional. A catalogue with 90% accuracy is worse than no catalogue — decisions made on bad data are confident and wrong.
+
+### Step 3 — Zero failed ARB validations
+
+All 557+ entries were validated against the official ARB ruleset before the catalogue was presented to leadership. Zero failed validations. That number matters: it means architects can build on the catalogue without a manual verification step, and it means the data is defensible in governance conversations.
+
+## The outcome
+
+**Projected ~$500,000 USD/year cost avoidance** when the incumbent SaaS contract is not renewed. The catalogue now serves as the authoritative application inventory for the EA practice — the thing the old tool promised to be.
+
+The CIO, on seeing the catalogue and the direction it was heading: *"Very impressed with what we have and especially with where we are headed."*
+
+## What comes next
+
+The catalogue is now the foundation for a broader EA digital assistant — an internal tool that gives architects natural-language access to the portfolio. Planned capabilities include C4 diagram generation from the catalogue data, ARB review automation, and portfolio queries via an MCP server.
+
+The point isn't the tools. It's that a structured data asset, built with clear governance and AI-assisted classification, is now pulling forward work that used to require expensive external software and manual effort.
+
+## Three things I'd tell an EA team starting this today
+
+1. **Define your validation rules before you write a line of automation.** The rules are the product. The automation is just the delivery mechanism.
+2. **Use LLMs for classification suggestions, not for authoritative answers.** Build a human-review queue for anything below a confidence threshold.
+3. **Align to existing governance standards from the start.** An AI-assisted catalogue that doesn't pass the ARB gate is a science project, not a strategic asset.
+
+---
+
+*The techniques here — structured framework, LLM-assisted classification, deterministic validation — generalise to any large enterprise data problem. The application portfolio is just where I ran the experiment.*
