@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@/components/analytics";
+import { StructuredData } from "@/components/structured-data";
 import Script from "next/script";
 
 export const runtime = "edge";
@@ -15,6 +16,9 @@ export const metadata: Metadata = buildMetadata();
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <StructuredData />
+      </head>
       <body className="bg-background text-foreground">
         <ThemeProvider>
           <div className="flex min-h-screen flex-col">

@@ -1,0 +1,74 @@
+---
+title: "The Dual Mandate: Leading at the Day Job While Running a Business on the Side"
+description: "Holding a Director-level role at one company while operating a profitable bootstrapped business takes more than time management. It requires designing both jobs so neither corrupts the other."
+date: "2026-04-25"
+updated: "2026-05-01"
+category: "leadership"
+tags:
+  - leadership
+  - operating-model
+  - dual-mandate
+  - founder
+  - architecture
+featured: true
+---
+
+import { Callout } from '@/components/callout'
+
+I do two jobs. One is Director — Enterprise Architect at a US fintech client; the other is founder-operator of a small hospitality portfolio that does ₹75L in topline. Both are real, both are scrutinised, and both are designed so that the existence of one does not corrupt the other.
+
+This piece is not advice. It is a description of how I keep them from leaking into each other, written for the kind of senior IC or executive who has been thinking about doing something similar.
+
+## The temptation everyone falls into
+
+The default failure mode of someone running a side business is they let it eat into their day job — slowly, in tiny increments, until the day job notices. The conversation with the recruiter goes the same way every time: *"How will you have time for this role given your other ventures?"* The honest answer most people give does not survive scrutiny.
+
+The other failure mode, less common but real: the day job eats the side business. The founder is "always on" for the employer and the business stagnates because the operator is never there. The business limps along on borrowed momentum until something breaks.
+
+Both fail for the same reason — the two jobs were never designed to coexist. They were just stacked on top of each other and held together with willpower.
+
+## Designing for non-interference
+
+The architectural principle that makes the dual mandate work is non-interference. Each job must be able to run while the other is being attended to. That means three things:
+
+**1. The day job has to be the day job.** No side-business calls during work hours. No side-business browser tabs. No "quick check on the OTA inbox" during a deep technical review. The day-job employer is paying for cognitive presence, and that contract is unambiguous. If something is on fire in the side business at 11am, it waits until lunch. If it cannot wait, the side business is poorly designed.
+
+**2. The side business must run without the founder being on the critical path.** This is where most aspiring side-founders fail. They build a business that needs them every day. A business that needs you every day is not a side business — it is your real job, with your day job becoming the side. The fix is to invest in tooling, automation, and a small operations team *before* scaling. I spent the first year of Atlas Homestays building a multi-tenant SaaS that runs the operations. Now the business does not need me every day. That investment is what licences the dual mandate.
+
+**3. The side business cannot use day-job leverage.** No client introductions. No vendors who are also day-job vendors. No conversations that blur the lines. This is partly ethics, partly self-protection: the moment your two roles share a network, both are fragile.
+
+<Callout>
+A good rule: if your day-job employer found out everything about your side business tomorrow, would anything be embarrassing? If yes, redesign now.
+</Callout>
+
+## The AI-native SDLC as the mechanism
+
+The reason a one-founder hospitality business with seven staff and ₹75L topline runs on 3–5 hours of my time per week is the same reason engineering teams ship fast without breaking things: short cycles, automated gates, fast recovery.
+
+In practice that looks like:
+
+- Every change to the operating software ships with a release gate that runs Playwright E2E and integration tests before any merge to main.
+- Every booking flows through automation — pricing, comms, lock provisioning, accounting routing — and only escalates to a human for genuine exceptions.
+- Every operational failure has a runbook. The MTTR for an incident is under 30 minutes because the runbook says exactly what to do.
+
+This is DORA — Deployment Frequency, Lead Time for Changes, Change Failure Rate, MTTR — applied to a business, not just an engineering team. It is unfashionable to run hospitality this way. It is also why I do not panic when something happens at 11am on a Tuesday.
+
+## What it costs
+
+Running both jobs honestly costs you optionality. You will not say yes to every conference invitation, you will not be at every dinner, you will not pick up new hobbies. You will work weekends sometimes, but they will be focused, not chaotic. You will have a clear sense of what the next quarter looks like in both roles.
+
+The compensating gain is that both jobs reinforce each other in ways neither would alone. The day job sharpens the architecture muscles you use on the side build. The side business teaches you operational realities — guest messaging at 2am, GST quirks, OTA contract surprises — that no enterprise role would expose you to. Each makes you better at the other.
+
+## Telling the story to a recruiter
+
+The conversation goes like this:
+
+> "Yes, I run a small hospitality portfolio in addition to this role. It's bootstrapped, profitable, and built on an AI-native SDLC. Day-to-day involvement is minimal — three to five hours a week, usually on weekends. The same architectural rigour I bring to my day job is what lets the business run without me. I would not have applied for this role if either was at risk."
+
+That answer holds up because it is true. The architecture that makes both jobs possible is the same architecture I am being hired to bring to the day job. The side business is not a distraction. It is a working proof point.
+
+## The boring conclusion
+
+The dual mandate is not for everyone. It requires a specific design temperament — the willingness to spend a year building tooling instead of scaling, the discipline to keep the two jobs separate, the operational maturity to run a business on automation instead of presence. If you have those, it works. If you do not, do not try.
+
+If you do try, design for non-interference from day one. Otherwise the two jobs will collapse into one, and it will be the worse one of the two.

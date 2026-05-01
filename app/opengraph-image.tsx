@@ -5,5 +5,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function Image() {
-  return ogImage({ title: "Sreekar Atla" });
+  return ogImage({
+    eyebrow: "sreekaratla.com",
+    title: "Enterprise architect · AI & cloud leader · hospitality founder",
+    byline: "Director-level EA · Atlas founder · 21+ years"
+  });
 }

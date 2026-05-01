@@ -1,0 +1,82 @@
+---
+title: "Running a ₹75L Hospitality Business Solo on an AI-Native SDLC"
+description: "How Atlas Homestays operates with one founder, seven staff, and a self-built multi-tenant SaaS underneath — what works, what breaks, and what the numbers actually say."
+date: "2026-04-20"
+updated: "2026-05-01"
+category: "hospitality"
+tags:
+  - operations
+  - bootstrapped
+  - hospitality
+  - dora
+  - ai-native-sdlc
+featured: true
+---
+
+import { Callout } from '@/components/callout'
+
+This is a field report — not a playbook for sale. Atlas Homestays is a small hospitality business in Hyderabad that did **₹75L topline and ₹60L bottomline in FY24**, an 80% margin. It is bootstrapped, multi-property, run with seven on-the-ground staff, and built and maintained by exactly one founder over evenings and weekends. This is what makes that possible.
+
+## The thing most people get wrong
+
+Hospitality is treated as a labour-intensive, low-margin business. It can be. It does not have to be. The thing most operators get wrong is treating each stay as a sequence of manual steps, then hiring people to perform those steps. The first hire is a property manager. The second is a virtual assistant. The third is a ledger keeper. By the time you have ten properties you have an organisation, and most of the margin has gone into payroll.
+
+The alternative is to treat operations as software with humans on the edges, not the other way round. Software is the spine; humans handle the things software cannot. That inverts the cost curve.
+
+## The operating spine
+
+Three things hold the business together, and none of them are particularly clever individually:
+
+1. **One source of truth for every stay.** A multi-tenant PMS that I built for this business runs everything — bookings, channel sync to Airbnb and Booking.com, dynamic pricing, GST/TDS routing, smart-lock provisioning, guest messaging. The same database powers staff workflows, owner dashboards, and the guest experience. There is exactly one number for occupancy, exactly one number for revenue, and exactly one place to update an availability rule.
+
+2. **Automation that touches every booking.** Every confirmation triggers a sequence: tenant assignment, dynamic pricing recalc, WhatsApp guest comms (templates + automation, Twilio under the hood), smart-lock PIN provisioning, housekeeping task creation, OTA fee reconciliation. Booking confirmation went from hours to seconds. Manual admin workload dropped by roughly 80%.
+
+3. **Staff doing the things software cannot.** Seven people on the ground — housekeeping, maintenance, on-site host duties, key handovers when a smart lock fails, the warm conversation a guest sometimes wants. The software does not pretend to do these. The staff do not pretend to manage spreadsheets. The interface between the two is a Power Apps screen that shows them today's tasks and lets them log issues.
+
+<Callout>
+The boring outcome of this design: I do not need to be involved in any individual stay for the business to run.
+</Callout>
+
+## What "minimal involvement" actually means
+
+It does not mean zero. It means the founder does not appear on the critical path. A typical week:
+
+- I look at the dashboard once. Occupancy, revenue, exception count, any property below threshold.
+- I read flagged guest messages — the ones the system thinks need a human, not the routine ones.
+- I do one ops review with the on-ground lead — usually 30 minutes.
+- I review pricing rules monthly, not weekly.
+- I push a software change when one is needed — usually two or three small ones a month.
+
+That's it. Total involvement: 3–5 hours per week, sometimes less. The rest of my time is the day job (Director — Enterprise Architect at Codincity) and the longer-form building of the SaaS layer.
+
+## The numbers, honestly
+
+These are the operational outcomes that came out of running this way:
+
+- **Occupancy: +15%** vs the manual baseline before automation. Mostly because dynamic pricing actually fires every day and matches what the OTAs are doing.
+- **Booking confirmation: hours → seconds.** Instant in the common case. The guest gets the lock PIN and the welcome message before the booking is fully posted in the OTA's slow-sync queue.
+- **Manual admin workload: −80%.** Measured by where the on-ground lead's time was actually going before vs after. Most of it was OTA reconciliation and message-template hunting; both are now zero.
+- **Margin: ~80% (FY24).** ₹75L topline, ₹60L bottomline. Gross of taxes; tax-and-routing infrastructure handles the multi-entity GST flow.
+
+## The DORA habit, applied to hospitality
+
+The reason all of this stays stable on a one-developer schedule is the same reason a well-run engineering team ships fast without breaking things: short cycles, automated gates, fast recovery. The numbers I track for the SaaS underneath:
+
+- **Deployment frequency:** 3–5 deploys per week across 5 repos.
+- **Lead time for changes:** Under 45 minutes from commit to production.
+- **Change failure rate:** Under 5%.
+- **MTTR:** Under 30 minutes, runbook-driven.
+
+These are DORA metrics. They are typically measured for engineering organisations of fifty or more people. Running them on a solo build with hospitality as the load source is unusual. It is also why the business does not break when I am not looking at it.
+
+## What this is not
+
+This is not a generalisable model for hospitality. It assumes the operator is also a senior engineer. It assumes the operator has the patience to spend a year building tooling before scaling properties. It assumes the operator can resist the urge to hire their way out of every operational problem.
+
+Most hospitality operators reading this should not try to replicate the build. They should consider whether the *philosophy* — software as the spine, humans on the edges — would change how they think about their next hire.
+
+## What comes next
+
+Three of the modules inside Atlas PMS are productisable as standalone products: the channel manager, the WhatsApp guest-comms stack, the smart-lock provisioning layer. Other multi-property operators have started asking. We will see whether any of them want to pay for a SaaS rather than build their own.
+
+That is the next chapter. The current one ends here: a small business, run honestly, on a system that respects both the guest and the operator's time.
