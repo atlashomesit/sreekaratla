@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { Route } from "next";
 import { notFound } from "next/navigation";
+import dynamicImport from "next/dynamic";
 import { allPosts } from "contentlayer/generated";
-import { useMDXComponent } from "next-contentlayer/hooks";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Container } from "@/components/container";
 import { Prose } from "@/components/prose";
@@ -14,9 +14,13 @@ import { NewsletterCta } from "@/components/newsletter-cta";
 import { getAdjacentPosts, getPostByParams, getRelatedPosts, resolveTrack } from "@/lib/content";
 import { formatDate } from "@/lib/date";
 import { siteConfig, trackLabels } from "@/lib/config";
-import { mdxComponents } from "@/lib/mdx";
 import type { TrackId } from "@/lib/config";
 import { PostCard } from "@/components/post-card";
+
+const MdxRenderer = dynamicImport(
+  () => import("@/components/mdx-renderer").then((m) => m.MdxRenderer),
+  { ssr: false }
+);
 
 interface ArticlePageProps {
   params: { category: TrackId; slug: string };
@@ -68,7 +72,6 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   }
 
   const track = resolveTrack(post);
-  const Component = useMDXComponent(post.body.code);
   const adjacent = getAdjacentPosts(post);
   const related = getRelatedPosts(post, 3);
 
@@ -141,7 +144,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </header>
         <Prose>
-          <Component components={mdxComponents} />
+          <MdxRenderer code={post.body.code} />
         </Prose>
         <ShareButtons title={post.title} />
         <nav className="grid gap-4 border-t border-border/60 pt-6 text-sm text-foreground/70 sm:grid-cols-2">
