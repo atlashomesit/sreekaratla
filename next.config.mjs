@@ -7,7 +7,11 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://plausible.io",
+      // 'unsafe-eval' is required by next-contentlayer's useMDXComponent, which uses
+      // `new Function(code)` to instantiate the compiled MDX bundle on hydration.
+      // Marginal risk over the already-present 'unsafe-inline' (which permits raw <script>);
+      // tracked as a follow-up to pre-bake MDX → static HTML at build time and drop this.
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://plausible.io",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://*.googleusercontent.com",
       "font-src 'self' data:",
