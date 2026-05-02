@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { Route } from "next";
 import { notFound } from "next/navigation";
+import dynamicImport from "next/dynamic";
 import { allPosts } from "contentlayer/generated";
 
-import { MdxRenderer } from "@/components/mdx-renderer";
+const MdxRenderer = dynamicImport(
+  () => import("@/components/mdx-renderer").then((m) => m.MdxRenderer),
+  { ssr: false }
+);
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Container } from "@/components/container";
 import { Prose } from "@/components/prose";
