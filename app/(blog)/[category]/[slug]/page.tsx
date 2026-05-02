@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { Route } from "next";
 import { notFound } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
 import { allPosts } from "contentlayer/generated";
-import { mdxComponents } from "@/lib/mdx";
 
+import { MdxRenderer } from "@/components/mdx-renderer";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Container } from "@/components/container";
 import { Prose } from "@/components/prose";
@@ -142,11 +140,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </header>
         <Prose>
-          <MDXRemote
-            source={post.body.raw}
-            components={mdxComponents}
-            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
-          />
+          <MdxRenderer code={post.body.code} />
         </Prose>
         <ShareButtons title={post.title} />
         <nav className="grid gap-4 border-t border-border/60 pt-6 text-sm text-foreground/70 sm:grid-cols-2">
