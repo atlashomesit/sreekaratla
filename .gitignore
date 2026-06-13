@@ -41,3 +41,6 @@ public/rss.xml
 public/rss
 public/sitemap-*.xml
 .tests-dist
+
+# Local-only business material (never commit)
+sales/
