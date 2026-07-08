@@ -1,70 +1,66 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
-import { Briefcase, Github, Linkedin, Newspaper } from "lucide-react";
+import { ArrowRight, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
 
+const monoLink =
+  "inline-flex min-h-[44px] items-center font-mono text-sm text-foreground/70 transition-colors hover:text-primary";
+
 export function Hero() {
   return (
-    <section className="relative overflow-hidden rounded-[3rem] border border-border/60 bg-gradient-to-br from-brand-bg to-muted p-8 shadow-xl sm:p-12">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.55),_transparent_60%)]" />
-      <div className="relative z-10 grid gap-10 lg:grid-cols-[minmax(0,1.35fr),minmax(0,1fr)] lg:items-center">
-        <div className="space-y-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/60">Sreekar Atla</p>
-          <h1 className="text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
-            Enterprise architect, AI &amp; cloud leader, hospitality founder.
-          </h1>
-          <p className="max-w-2xl text-lg text-foreground/75">
-            21+ years architecting platforms across Azure, AWS, and GCP — currently leading enterprise architecture and the AI rollout for a US mortgage-servicing platform. In parallel I run Atlas Homestays and build Atlas PMS, a multi-tenant SaaS for hospitality built solo over evenings and weekends. Slow writing on tech, hospitality, leadership, and the inner work behind all three.
-          </p>
-          <div className="flex flex-wrap items-center gap-3">
-            <Button asChild>
-              <a
-                href={siteConfig.resumeUrl}
-                target={siteConfig.resumeUrl.startsWith("http") ? "_blank" : undefined}
-                rel="noreferrer"
-              >
-                Download Resume
-              </a>
-            </Button>
-            <Button asChild variant="outline">
-              <a href={siteConfig.hireMeUrl}>
-                <Briefcase className="h-4 w-4" /> Hire Me
-              </a>
-            </Button>
-            <Button asChild variant="ghost">
-              <Link href={"/tech" as Route}>Browse Articles</Link>
-            </Button>
-            <Button asChild variant="ghost">
-              <a href="#newsletter">
-                <Newspaper className="h-4 w-4" /> Newsletter Signup
-              </a>
-            </Button>
-            <div className="flex items-center gap-3 text-sm text-foreground/60">
-              <a href={siteConfig.social.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/70 transition hover:border-ring hover:text-foreground">
-                <Github className="h-4 w-4" />
-              </a>
-              <a href={siteConfig.social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/70 transition hover:border-ring hover:text-foreground">
-                <Linkedin className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-          <p className="text-xs uppercase tracking-[0.25em] text-foreground/50">
-            Built on Next.js • Deployed on Cloudflare • MDX Articles
-          </p>
+    <section className="grid gap-12 pt-12 lg:grid-cols-[1.55fr,1fr] lg:items-center lg:gap-16 lg:pt-16">
+      <div className="border-l-[3px] border-primary pl-7 sm:pl-8">
+        <p className="font-mono text-sm text-primary">{"// Sreekar Atla"}</p>
+        <h1 className="mt-6 text-4xl font-semibold leading-[1.02] tracking-[-0.035em] text-foreground sm:text-5xl lg:text-6xl">
+          Enterprise architect, AI &amp; cloud leader, hospitality founder.
+        </h1>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/60">
+          21+ years architecting platforms across Azure, AWS, and GCP — currently leading enterprise architecture and the AI rollout for a US mortgage-servicing platform. In parallel I run Atlas Homestays and build Atlas PMS, a multi-tenant SaaS for hospitality built solo over evenings and weekends. Slow writing on tech, hospitality, leadership, and the inner work behind all three.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <Button asChild className="min-h-[44px] px-5">
+            <a
+              href={siteConfig.resumeUrl}
+              target={siteConfig.resumeUrl.startsWith("http") ? "_blank" : undefined}
+              rel="noreferrer"
+            >
+              Download Resume
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </Button>
+          <Button asChild variant="outline" className="min-h-[44px] px-5">
+            <a href={siteConfig.hireMeUrl}>
+              <Briefcase className="h-4 w-4" /> Hire Me
+            </a>
+          </Button>
+          <Link href={"/tech" as Route} className={monoLink}>
+            Browse Articles
+          </Link>
+          <a href="#newsletter" className={monoLink}>
+            Newsletter
+          </a>
         </div>
-        <div className="relative flex justify-center lg:justify-end">
-          <div className="relative h-64 w-64 overflow-hidden rounded-[2rem] border border-border/80 bg-background/80 shadow-xl">
-            <Image
-              src="/social/avatar.svg"
-              alt="Portrait of Sreekar Atla"
-              fill
-              priority
-              sizes="(max-width: 1024px) 60vw, 320px"
-              className="object-cover"
-            />
-          </div>
+        <p className="mt-8 font-mono text-xs uppercase tracking-[0.22em] text-foreground/40">
+          Built on Next.js • Deployed on Cloudflare • MDX Articles
+        </p>
+      </div>
+      <div className="space-y-3 lg:justify-self-end">
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-foreground/40">fig.01 / portrait</p>
+        <div className="relative aspect-[4/5] w-full max-w-xs overflow-hidden rounded-2xl border border-border/70 bg-muted">
+          <Image
+            src="/social/avatar.svg"
+            alt="Portrait of Sreekar Atla"
+            fill
+            priority
+            sizes="(max-width: 1024px) 70vw, 360px"
+            className="object-cover"
+          />
+        </div>
+        <div className="flex max-w-xs items-center justify-between gap-3 font-mono text-xs text-foreground/50">
+          <span>Sreekar Atla</span>
+          <span>Director · Enterprise Architect</span>
         </div>
       </div>
     </section>

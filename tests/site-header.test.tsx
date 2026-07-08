@@ -10,11 +10,13 @@ mockModule('next-themes', {
   useTheme: () => ({ theme: 'light', setTheme: () => {} })
 });
 
-test('site header exposes track navigation', async () => {
+test('site header exposes primary and track navigation', async () => {
   const { SiteHeader } = await import('../components/site-header');
   const html = renderToStaticMarkup(<SiteHeader />);
-  for (const label of ['Tech', 'Hospitality', 'Leadership', 'Spirituality']) {
+  // Primary nav items render as top-level links.
+  for (const label of ['Home', 'About', 'Now', 'Uses', 'Work with me', 'Contact']) {
     assert(html.includes(label), `expected nav to include ${label}`);
   }
-  assert(html.includes('Tech • Hospitality • Leadership • Spirituality'));
+  // The four content tracks are grouped under a "Tracks" dropdown trigger.
+  assert(html.includes('Tracks'), 'expected a Tracks menu trigger');
 });
