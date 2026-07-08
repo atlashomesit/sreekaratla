@@ -5,18 +5,32 @@ import { formatDate } from "@/lib/date";
 import { cn } from "@/lib/utils";
 import { trackDescriptions, trackLabels, type TrackId } from "@/lib/config";
 
-const accentBg: Record<TrackId, string> = {
-  tech: "bg-tech/10",
-  hospitality: "bg-hospitality/10",
-  leadership: "bg-leadership/10",
-  spirituality: "bg-spirituality/10"
+const trackBorder: Record<TrackId, string> = {
+  tech: "border-tech",
+  hospitality: "border-hospitality",
+  leadership: "border-leadership",
+  spirituality: "border-spirituality"
 };
 
-const accentDot: Record<TrackId, string> = {
-  tech: "bg-tech",
-  hospitality: "bg-hospitality",
-  leadership: "bg-leadership",
-  spirituality: "bg-spirituality"
+const trackText: Record<TrackId, string> = {
+  tech: "text-tech",
+  hospitality: "text-hospitality",
+  leadership: "text-leadership",
+  spirituality: "text-spirituality"
+};
+
+const trackCode: Record<TrackId, string> = {
+  tech: "TECH",
+  hospitality: "HOSP",
+  leadership: "LEAD",
+  spirituality: "SPIR"
+};
+
+const trackIndex: Record<TrackId, string> = {
+  tech: "01",
+  hospitality: "02",
+  leadership: "03",
+  spirituality: "04"
 };
 
 interface TrackCardProps {
@@ -29,44 +43,39 @@ export function TrackCard({ track, posts }: TrackCardProps) {
   const items = posts.slice(0, 3);
 
   return (
-    <article className={cn("flex h-full flex-col gap-6 rounded-3xl border border-border/60 p-6", accentBg[track])}>
-      <div className="space-y-3">
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/60">
-          {trackLabels[track]}
-        </span>
-        <p className="text-sm text-foreground/70">{description.intro}</p>
-        <p className="text-xs uppercase tracking-[0.18em] text-foreground/40">{description.highlight}</p>
+    <article className={cn("flex h-full flex-col border-t-2 pt-5 sm:pt-6", trackBorder[track])}>
+      <div className="flex items-center justify-between font-mono text-xs">
+        <span className={cn("font-semibold tracking-wide", trackText[track])}>{trackCode[track]}</span>
+        <span className="text-foreground/30">{trackIndex[track]}</span>
       </div>
-      <ul className="flex-1 space-y-4">
+      <p className="mt-4 text-[13px] font-semibold text-foreground">{trackLabels[track]}</p>
+      <p className="mt-1.5 text-[13px] leading-relaxed text-foreground/50">{description.intro}</p>
+
+      <ul className="mt-5 flex-1">
         {items.map((post) => (
-          <li key={post._id} className="group">
-            <Link
-              href={post.url as Route}
-              className={cn(
-                "grid gap-2 rounded-2xl border border-transparent px-3 py-2 transition-colors",
-                "group-hover:border-ring group-hover:bg-background/70"
-              )}
-            >
-              <div className="flex items-center gap-2 text-xs text-foreground/50">
-                <span className={cn("h-2.5 w-2.5 rounded-full", accentDot[track])} aria-hidden />
-                <span>{formatDate(post.date)}</span>
-              </div>
-              <p className="text-sm font-medium text-foreground group-hover:text-foreground/90">{post.title}</p>
-              <p className="text-xs text-foreground/60">{post.description}</p>
+          <li key={post._id} className="border-t border-foreground/10">
+            <Link href={post.url as Route} className="group block py-3 transition-opacity hover:opacity-70">
+              <span className="block font-mono text-[11px] uppercase tracking-wide text-foreground/40">
+                {formatDate(post.date)}
+              </span>
+              <span className="mt-1 block text-sm font-medium leading-snug text-foreground/90">{post.title}</span>
             </Link>
           </li>
         ))}
         {items.length === 0 && (
-          <li className="rounded-2xl border border-dashed border-border/60 p-3 text-sm text-foreground/60">
-            Articles coming soon.
-          </li>
+          <li className="border-t border-foreground/10 py-3 text-sm text-foreground/50">Articles coming soon.</li>
         )}
       </ul>
+
       <Link
         href={`/${track}` as Route}
-        className="inline-flex items-center justify-center rounded-full border border-border/70 px-4 py-2 text-sm font-medium text-foreground/80 transition hover:border-ring hover:text-foreground"
+        aria-label={`Browse ${trackLabels[track]}`}
+        className="group mt-4 inline-flex min-h-[44px] items-center gap-1.5 font-mono text-xs text-foreground/60 transition-colors hover:text-primary"
       >
-        Browse {trackLabels[track]}
+        browse
+        <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+          →
+        </span>
       </Link>
     </article>
   );

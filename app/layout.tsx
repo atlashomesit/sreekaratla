@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { buildMetadata } from "@/lib/seo";
 import { SiteHeader } from "@/components/site-header";
@@ -8,6 +9,15 @@ import { Analytics } from "@/components/analytics";
 import { StructuredData } from "@/components/structured-data";
 import Script from "next/script";
 
+// Mono face for eyebrows, labels, dates, track codes, and the hero meta line.
+// Self-hosted at build time; exposed as `--font-mono` and wired to Tailwind's font-mono.
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
+  display: "swap"
+});
+
 export const runtime = "edge";
 export const preferredRegion = "auto";
 
@@ -15,7 +25,7 @@ export const metadata: Metadata = buildMetadata();
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={plexMono.variable} suppressHydrationWarning>
       <head>
         <StructuredData />
       </head>
