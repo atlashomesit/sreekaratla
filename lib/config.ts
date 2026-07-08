@@ -33,6 +33,7 @@ export const siteConfig = {
     { title: 'About', href: '/about' },
     { title: 'Now', href: '/now' },
     { title: 'Uses', href: '/uses' },
+    { title: 'Work with me', href: '/consulting' },
     { title: 'Contact', href: '/contact' }
   ] satisfies NavLink[],
   social: {
