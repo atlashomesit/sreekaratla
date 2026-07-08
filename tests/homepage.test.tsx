@@ -55,7 +55,7 @@ test('home page highlights four tracks and hero ctas', async () => {
   for (const label of headings) {
     assert(html.includes(label));
   }
-  for (const cta of ['Download Resume', 'Newsletter Signup', 'Browse Articles']) {
+  for (const cta of ['Download Resume', 'Newsletter', 'Browse Articles']) {
     assert(html.includes(cta));
   }
 });

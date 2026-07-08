@@ -34,7 +34,8 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "var(--font-sans)", "system-ui"],
-        serif: ["EB Garamond", "var(--font-serif)", "serif"]
+        serif: ["EB Garamond", "var(--font-serif)", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"]
       },
       typography: {
         DEFAULT: {
