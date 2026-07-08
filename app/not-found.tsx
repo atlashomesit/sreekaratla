@@ -9,7 +9,7 @@ export default function NotFound() {
     { href: "/hospitality" as Route, label: "Hospitality", description: "Operating notes from Atlas Homestays and Atlas PMS." },
     { href: "/leadership" as Route, label: "Leadership", description: "Operating models for dual-mandate work." },
     { href: "/spirituality" as Route, label: "Spirituality", description: "Inner work for builders and operators." },
-    { href: "/about" as Route, label: "About", description: "Who I am and what I&apos;m working on now." }
+    { href: "/about" as Route, label: "About", description: "Who I am and what I'm working on now." }
   ];
 
   return (

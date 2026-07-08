@@ -46,6 +46,20 @@ export default {
               "&:hover": {
                 color: "hsl(var(--accent))"
               }
+            },
+            // rehype-autolink-headings wraps h1-h6 text in an <a href="#slug"> for
+            // deep-linking. Without this, that anchor inherits the rule above and every
+            // heading looks like a clickable inline link. Keep headings reading as
+            // headings; the underline only appears on hover as a "you can link here" cue.
+            "h1 a, h2 a, h3 a, h4 a, h5 a, h6 a": {
+              color: "inherit",
+              fontWeight: "inherit",
+              textDecoration: "none",
+              "&:hover": {
+                color: "inherit",
+                textDecoration: "underline",
+                textDecorationColor: "hsl(var(--accent))"
+              }
             }
           }
         }

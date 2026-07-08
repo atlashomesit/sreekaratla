@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import type { Route } from "next";
 import { usePathname } from "next/navigation";
-import { Github, Linkedin, Menu, X } from "lucide-react";
+import { Menu as HeadlessMenu, Transition } from "@headlessui/react";
+import { Github, Linkedin, Menu, ChevronDown, X } from "lucide-react";
 import { Container } from "./container";
 import { ThemeToggle } from "./theme-toggle";
 import { siteConfig, TRACK_NAV } from "@/lib/config";
@@ -17,17 +18,16 @@ export function SiteHeader() {
   const toggle = () => setOpen((prev) => !prev);
   const close = () => setOpen(false);
 
+  const tracksActive = TRACK_NAV.some(
+    (item) => pathname === item.href || pathname?.startsWith(`${item.href}/`)
+  );
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur">
       <Container className="flex items-center justify-between gap-6 py-4">
-        <div className="flex flex-1 items-center gap-4">
-          <Link href={"/" as Route} className="flex items-center gap-3" onClick={close}>
-            <div className="flex flex-col">
-              <span className="text-lg font-semibold tracking-tight text-foreground">{siteConfig.name}</span>
-              <span className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/60">
-                {siteConfig.tagline}
-              </span>
-            </div>
+        <div className="flex flex-1 items-center gap-6">
+          <Link href={"/" as Route} className="flex items-center" onClick={close}>
+            <span className="text-lg font-semibold tracking-tight text-foreground">{siteConfig.name}</span>
           </Link>
           <nav className="hidden items-center gap-5 text-sm font-medium text-foreground/70 lg:flex">
             {siteConfig.navigation.map((item) => {
@@ -45,6 +45,7 @@ export function SiteHeader() {
                 </Link>
               );
             })}
+            <TracksMenu active={tracksActive} />
           </nav>
         </div>
         <div className="flex items-center gap-3">
@@ -72,6 +73,48 @@ export function SiteHeader() {
       </Container>
       <MobileNav open={open} close={close} pathname={pathname ?? ""} />
     </header>
+  );
+}
+
+function TracksMenu({ active }: { active: boolean }) {
+  return (
+    <HeadlessMenu as="div" className="relative">
+      <HeadlessMenu.Button
+        className={cn(
+          "flex items-center gap-1 transition-colors hover:text-foreground",
+          active ? "text-foreground" : undefined
+        )}
+      >
+        Tracks
+        <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
+      </HeadlessMenu.Button>
+      <Transition
+        enter="transition ease-out duration-100"
+        enterFrom="opacity-0 translate-y-1"
+        enterTo="opacity-100 translate-y-0"
+        leave="transition ease-in duration-75"
+        leaveFrom="opacity-100 translate-y-0"
+        leaveTo="opacity-0 translate-y-1"
+      >
+        <HeadlessMenu.Items className="absolute left-0 top-full mt-2 w-56 origin-top-left rounded-2xl border border-border/60 bg-background/95 p-2 shadow-lg backdrop-blur focus:outline-none">
+          {TRACK_NAV.map((item) => (
+            <HeadlessMenu.Item key={item.id}>
+              {({ active: focused }) => (
+                <Link
+                  href={item.href as Route}
+                  className={cn(
+                    "block rounded-xl px-3 py-2 text-sm font-medium text-foreground/80",
+                    focused ? "bg-muted text-foreground" : undefined
+                  )}
+                >
+                  {item.title}
+                </Link>
+              )}
+            </HeadlessMenu.Item>
+          ))}
+        </HeadlessMenu.Items>
+      </Transition>
+    </HeadlessMenu>
   );
 }
 
@@ -122,7 +165,7 @@ function MobileNav({
                 className={cn(
                   "rounded-xl border border-transparent px-3 py-2 transition-colors",
                   active
-                    ? "border-ring bg-brand.bg/40 text-foreground"
+                    ? "border-ring bg-brand-bg/40 text-foreground"
                     : "text-foreground/70 hover:border-ring hover:bg-muted"
                 )}
               >

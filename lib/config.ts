@@ -27,9 +27,11 @@ export const siteConfig = {
   analyticsProvider: (process.env.ANALYTICS_PROVIDER as AnalyticsProvider) ?? 'plausible',
   plausibleDomain: process.env.PLAUSIBLE_DOMAIN ?? '',
   ga4Id: process.env.GA4_ID ?? '',
+  // Primary nav — track links (Tech/Hospitality/Leadership/Spirituality) live in
+  // TRACK_NAV and are rendered separately (a "Tracks" dropdown in the header, their
+  // own footer column) so they aren't duplicated everywhere this list is used.
   navigation: [
     { title: 'Home', href: '/' },
-    ...TRACK_NAV,
     { title: 'About', href: '/about' },
     { title: 'Now', href: '/now' },
     { title: 'Uses', href: '/uses' },
